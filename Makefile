@@ -1,4 +1,4 @@
-.PHONY: setup build up down ps logs exec
+.PHONY: setup build up down ps logs exec test
 
 setup:
 	@make up
@@ -15,3 +15,6 @@ logs:
 	docker compose logs -f demo-app
 exec:
 	docker compose exec demo-app bash
+test:
+	docker compose run --entrypoint "poetry run pytest --asyncio-mode=auto" demo-app
+
